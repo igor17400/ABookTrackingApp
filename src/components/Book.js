@@ -7,7 +7,12 @@ import PropTypes from "prop-types";
 const Book = (props) => {
     const { book, books, shelfHandle } = props;
 
-    const bookImage = book.imageLinks.smallThumbnail;
+    var bookImage = ""
+    try {
+        bookImage = book.imageLinks.smallThumbnail;
+    } catch {
+        bookImage = "https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
     const title = book.title;
 
     // The code below is repeated several times in the App.js.

@@ -30,6 +30,7 @@ class SearchBooks extends Component {
     render() {
         const { query, queryBooks } = this.state;
         const { books, shelfHandle } = this.props;
+        console.log(queryBooks.length);
 
         return (
             <div className="search-books">
@@ -49,30 +50,29 @@ class SearchBooks extends Component {
 
                 {queryBooks.length !== books.length && (
                     <div>
-                        <span>
-                            Now showing {queryBooks.length} books
-                        </span>
+                        <span>Now showing {queryBooks.length} books</span>
                         <button onClick={this.clearQuery}>Show all</button>
                     </div>
                 )}
 
-                <div className="search-books-results">
-                    <ol className="books-grid">
-                        {queryBooks.map((book) => (
-                            <Book
-                                book={book}
-                                books={books}
-                                key={book.id}
-                                shelfHandle={shelfHandle}
-                            />
-                        ))}
-                    </ol>
-                </div>
+                {queryBooks.length !== 0 && (
+                    <div className="search-books-results">
+                        <ol className="books-grid">
+                            {queryBooks.map((book) => (
+                                <Book
+                                    book={book}
+                                    books={books}
+                                    key={book.id}
+                                    shelfHandle={shelfHandle}
+                                />
+                            ))}
+                        </ol>
+                    </div>
+                )}
             </div>
         );
     }
 }
-
 
 SearchBooks.propTypes = {
     books: PropTypes.array.isRequired,
